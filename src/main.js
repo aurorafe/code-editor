@@ -1,5 +1,5 @@
 import 'normalize.css';
-import './styles/index.scss'; // global css
+// import './styles/index.scss'; // global css
 
 import Vue from 'vue';
 import App from './App';

@@ -26,55 +26,53 @@ export default {
     value: {
       type: Number,
       default: 0.5,
-      validator: value => {
-        return 0 < value && value < 1
-      }
-    }
+      validator: value => value > 0 && value < 1,
+    },
   },
   data() {
     return {
-      canMove: false
-    }
+      canMove: false,
+    };
   },
   methods: {
     setWidth() {
-      //根据传入的left right 计算宽度比例
-      let leftWidth = `${this.value * 100}%`
-      let rightWidth = `${(1 - this.value) * 100}%`
-      this.$refs.left.style = `right:${rightWidth}`
-      this.$refs.right.style = `left:${leftWidth}`
-      this.$refs.line.style = `left:${leftWidth}`
+      // 根据传入的left right 计算宽度比例
+      const leftWidth = `${this.value * 100}%`;
+      const rightWidth = `${(1 - this.value) * 100}%`;
+      this.$refs.left.style = `right:${rightWidth}`;
+      this.$refs.right.style = `left:${leftWidth}`;
+      this.$refs.line.style = `left:${leftWidth}`;
     },
     beginMove() {
-      console.log('beginMove')
-      this.canMove = true
+      console.log('beginMove');
+      this.canMove = true;
     },
     lineMove(e) {
       if (this.canMove) {
-        let splitPane = this.splitPaneEl.getBoundingClientRect(),
-          splitPaneWidth = splitPane.width,
-          splitPaneX = splitPane.x
+        const splitPane = this.splitPaneEl.getBoundingClientRect();
+          const splitPaneWidth = splitPane.width;
+          const splitPaneX = splitPane.x;
 
-        let mouseX = e.pageX
+        const mouseX = e.pageX;
 
-        let value = (mouseX - splitPaneX) / splitPaneWidth,
-          leftWidth = `${value * 100}%`,
-          rightWidth = `${(1 - value) * 100}%`
-        this.$refs.left.style = `right:${rightWidth}`
-        this.$refs.right.style = `left:${leftWidth}`
-        this.$refs.line.style = `left:${leftWidth}`
+        const value = (mouseX - splitPaneX) / splitPaneWidth;
+          const leftWidth = `${value * 100}%`;
+          const rightWidth = `${(1 - value) * 100}%`;
+        this.$refs.left.style = `right:${rightWidth}`;
+        this.$refs.right.style = `left:${leftWidth}`;
+        this.$refs.line.style = `left:${leftWidth}`;
       }
     },
     endMove() {
-      console.log('endMove')
-      this.canMove = false
-    }
+      console.log('endMove');
+      this.canMove = false;
+    },
   },
   mounted() {
-    this.setWidth()
-    this.splitPaneEl = document.getElementById('split-pane')
-  }
-}
+    this.setWidth();
+    this.splitPaneEl = document.getElementById('split-pane');
+  },
+};
 </script>
 
 <style lang="scss">
@@ -103,4 +101,3 @@ export default {
   }
 }
 </style>
-
