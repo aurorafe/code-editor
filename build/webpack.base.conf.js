@@ -55,17 +55,6 @@ module.exports = {
         loader: 'babel-loader',
         exclude: utils.resolve('node_modules'),
       },
-      // {
-      //   test: /\.svg$/,
-      //   loader: 'svg-sprite-loader',
-      //   include: [utils.resolve('src/icons')],
-      //   options: {
-      //     extract: false,
-      //     symbolId: 'icon-[name]',
-      //     publicPath: utils.assetsPath('svg/'),
-      //     spriteFilename: svgPath => `sprite${svgPath.substr(-4)}`
-      //   }
-      // },
       {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
@@ -97,9 +86,6 @@ module.exports = {
     new VueLoaderPlugin(),
     new StyleLintPlugin(),
     new FriendlyErrorsPlugin(),
-    // new webpack.ProvidePlugin({
-    //   maptalks: 'maptalks'
-    // })
   ],
   node: {
     setImmediate: false,

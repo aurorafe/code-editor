@@ -9,9 +9,7 @@ module.exports = {
   mode: 'production',
   entry: {
     extlib: [
-      'vue',
-      'vuex',
-      'vue-router'
+      'vue'
     ]
   },
   output: {
