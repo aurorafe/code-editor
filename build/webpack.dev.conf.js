@@ -50,8 +50,9 @@ const devWebpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new ProgressBarPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    // new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
-    // new webpack.NoEmitOnErrorsPlugin(),
+    // Tip: 以下两个插件不开的话会造成开发婚假sourcemap文件对应不上
+    new webpack.NamedModulesPlugin(), // HMR shows correct file names in console on update.
+    new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',

@@ -28,4 +28,25 @@ function getUuid(length = 16) {
   return outStr;
 }
 
-export { getSource, getUuid };
+const on = (function () {
+  return function (element, event, handler) {
+    if (element && event && handler) {
+      element.addEventListener(event, handler, false);
+    }
+  };
+}());
+
+const off = (function () {
+  return function (element, event, handler) {
+    if (element && event) {
+      element.removeEventListener(event, handler, false);
+    }
+  };
+}());
+
+export {
+  on,
+  off,
+  getSource,
+  getUuid,
+};
