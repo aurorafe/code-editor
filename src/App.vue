@@ -2,7 +2,10 @@
   <div id="app">
     <ce-header></ce-header>
     <div class="code-editor-content">
-      <split-warp v-model="value"></split-warp>
+      <split-warp v-model="value">
+        <editor-ace slot="left"></editor-ace>
+        <div class="mount-el" id="mount-el"></div>
+      </split-warp>
     </div>
   </div>
 </template>
@@ -10,11 +13,13 @@
 <script>
   import CeHeader from './components/header';
   import SplitWarp from './components/split-wrapper';
+  import EditorAce from './components/editor-ace';
 
   export default {
     components: {
       CeHeader,
       SplitWarp,
+      EditorAce,
     },
     data() {
       return {

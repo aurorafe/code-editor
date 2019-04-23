@@ -56,6 +56,10 @@ module.exports = {
         exclude: utils.resolve('node_modules'),
       },
       {
+        test: /\.snippets/,
+        loader: 'raw-loader'
+      },
+      {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: 'url-loader',
         options: {
