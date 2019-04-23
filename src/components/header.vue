@@ -29,90 +29,90 @@
 export default {
   name: 'onlineHeader',
   data() {
-    return {}
+    return {};
   },
   methods: {
     handleAction(type) {
-      this.$emit(type)
-    }
-  }
-}
+      this.$emit(type);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.ol-header {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
-  &-title {
+  .ol-header {
+    position: relative;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    width: 200px;
-    height: 100%;
-    vertical-align: middle;
-    text-align: left;
-    cursor: default;
-    &-icon {
-      display: inline-block;
-      width: 36px;
-      height: 36px;
-      background: url('../assets/icon/title.svg') no-repeat;
-      background-size: 100%;
-    }
-    &-text {
-      padding-left: 8px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-  }
-  &-action {
+    justify-content: space-between;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    &-button {
+    &-title {
       display: flex;
       flex-direction: row;
       align-items: center;
+      width: 200px;
       height: 100%;
-      font-size: 12px;
       vertical-align: middle;
-      margin-right: 32px;
-      cursor: pointer;
-      img {
-        width: 16px;
-        height: 16px;
-        margin-right: 6px;
+      text-align: left;
+      cursor: default;
+      &-icon {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        background: url('../assets/icon/title.svg') no-repeat;
+        background-size: 100%;
+      }
+      &-text {
+        padding-left: 8px;
+        font-size: 18px;
+        font-weight: bold;
       }
     }
-    &-button:hover {
-      color: #1296db;
+    &-action {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      &-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100%;
+        font-size: 12px;
+        vertical-align: middle;
+        margin-right: 32px;
+        cursor: pointer;
+        img {
+          width: 16px;
+          height: 16px;
+          margin-right: 6px;
+        }
+      }
+      &-button:hover {
+        color: #1296db;
+      }
+    }
+    &-help {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      cursor: pointer;
+      span {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url('../assets/icon/help.svg') no-repeat;
+        background-size: 100%;
+      }
+      span:hover {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: url('../assets/icon/help-active.svg') no-repeat;
+        background-size: 100%;
+      }
     }
   }
-  &-help {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    span {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      background: url('../assets/icon/help.svg') no-repeat;
-      background-size: 100%;
-    }
-    span:hover {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      background: url('../assets/icon/help-active.svg') no-repeat;
-      background-size: 100%;
-    }
-  }
-}
 </style>

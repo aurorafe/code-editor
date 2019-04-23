@@ -37,6 +37,9 @@ module.exports = {
     'func-names': 0,
 
     'no-unused-expressions': ['error', { 'allowShortCircuit': true }],
+    'no-restricted-properties': 'off',
+    'array-callback-return': 'off',
+    'prefer-destructuring': 'off',
 
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
