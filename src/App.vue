@@ -3,7 +3,11 @@
     <ce-header></ce-header>
     <div class="code-editor-content">
       <split-warp v-model="value">
-        <editor-ace slot="left"></editor-ace>
+        <editor-codemirror
+          slot="left"
+          :options="options"
+          :code="code"
+        ></editor-codemirror>
         <div class="mount-el" id="mount-el"></div>
       </split-warp>
     </div>
@@ -13,17 +17,38 @@
 <script>
   import CeHeader from './components/header';
   import SplitWarp from './components/split-wrapper';
-  import EditorAce from './components/editor-ace';
+  // import EditorAce from './components/editor-ace';
+  import EditorCodemirror from './components/editor-codemirror';
 
   export default {
     components: {
       CeHeader,
       SplitWarp,
-      EditorAce,
+      // EditorAce,
+      EditorCodemirror,
     },
     data() {
       return {
         value: 0.5,
+        options: {
+          mode: 'htmlmixed',
+          lineNumbers: !0,
+          // scrollbarStyle: "simple",
+          autoCloseBrackets: !0,
+          matchBrackets: !0,
+          showCursorWhenSelecting: !0,
+          autoCloseTags: !0,
+          tabSize: 2,
+          foldGutter: !0,
+          gutters: [
+            'CodeMirror-linenumbers',
+            'CodeMirror-foldgutter',
+            'CodeMirror-lint-markers',
+          ],
+          autofocus: !0,
+          styleActiveLine: !0,
+        },
+        code: '<div></div>',
       };
     },
   };
