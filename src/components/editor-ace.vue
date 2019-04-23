@@ -14,7 +14,7 @@
     require('brace/theme/github');
     require('brace/ext/language_tools');
     require('brace/ext/searchbox');
-    require('../snippets');
+    require('../editor/snippets');
   }
 
   export default {
