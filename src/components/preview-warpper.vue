@@ -5,6 +5,7 @@
 <script>
   import Vue from 'vue';
   import { getSource, uuid } from '../utils';
+  import getLessCode from '../processors/less';
 
   export default {
     name: 'preview-wrapper',
@@ -41,6 +42,7 @@
         this.codeTemplate.id = uuid();
         // eslint-disable-next-line no-new-func
         const parseConfig = new Function(this.codeTemplate.script)();
+        console.log(parseConfig);
         parseConfig.template = this.codeTemplate.template;
         const CodeComponent = Vue.extend(parseConfig);
         // 挂载组件
@@ -48,17 +50,19 @@
         this.$refs.preview.appendChild(this.codeTemplate.component.$el);
         // 挂载样式
         if (this.codeTemplate.css !== '') {
-          const styleEl = document.createElement('style');
-          styleEl.type = 'text/css';
-          styleEl.id = this.codeTemplate.id;
-          styleEl.innerHTML = this.codeTemplate.style;
-          document.head.appendChild(styleEl);
+          getLessCode(this.codeTemplate.style).then(({ result }) => {
+            const styleEl = document.createElement('style');
+            styleEl.type = 'text/css';
+            styleEl.id = this.codeTemplate.id;
+            styleEl.innerHTML = result.css || '';
+            document.head.appendChild(styleEl);
+          });
         }
       },
       destroyedView() {
         // 销毁vue组件
         if (this.codeTemplate.component) {
-          this.$refs.preview.removeChild(this.codeTemplate.component.$el);
+          this.$refs.preview && this.$refs.preview.removeChild(this.codeTemplate.component.$el);
           this.codeTemplate.component.$destroy();
           this.codeTemplate.component = null;
         }
@@ -71,10 +75,7 @@
       getRunCode() {
         this.codeTemplate.template = getSource(this.code, 'template');
         this.codeTemplate.style = getSource(this.code, 'style');
-        this.codeTemplate.script = getSource(this.code, 'script').replace(
-          /export default/,
-          'return ',
-        );
+        this.codeTemplate.script = getSource(this.code, 'script');
       },
     },
     destroyed() {
@@ -83,7 +84,7 @@
   };
 </script>
 
-<style scoped>
+<style scoped lang="less">
   .preview-wrapper {
     background-color: #fff;
     height: 100%;

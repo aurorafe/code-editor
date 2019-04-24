@@ -8,11 +8,27 @@ function getSource(source, type) {
 
   openingTag = openingTag[0];
 
-
-  return source.slice(
+  const sliceSource = source.slice(
     source.indexOf(openingTag) + openingTag.length,
     source.lastIndexOf(`</${type}>`),
   );
+
+  let code = '';
+
+  if (type === 'script') {
+    code = Babel.transform(sliceSource.replace(
+      /export default/,
+      'const module = ',
+    ), {
+      presets: ['es2015', 'stage-0'],
+    }).code;
+    code = `${code}
+return _module;`;
+  } else {
+    code = sliceSource;
+  }
+
+  return code;
 }
 
 /**
