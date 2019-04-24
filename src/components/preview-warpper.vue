@@ -54,7 +54,7 @@
             const styleEl = document.createElement('style');
             styleEl.type = 'text/css';
             styleEl.id = this.codeTemplate.id;
-            styleEl.innerHTML = result.css || '';
+            styleEl.innerHTML = result || '';
             document.head.appendChild(styleEl);
           });
         }

@@ -2,7 +2,7 @@ import less from 'less';
 
 export default function (source) {
   return new Promise(resolve => {
-    less.render(source, (error, css) => {
+    less.render(source, (error, result) => {
       if (error) {
         // index starts at 1
         let line = parseInt(error.line, 10) || 0;
@@ -25,7 +25,7 @@ export default function (source) {
       }
       resolve({
         errors: null,
-        result: css,
+        result: result.css.trim(),
       });
     });
   });
