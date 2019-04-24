@@ -1,5 +1,3 @@
-const charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
 function getSource(source, type) {
   const regex = new RegExp(`<${type}[^>]*>`);
   let openingTag = source.match(regex);
@@ -17,17 +15,23 @@ function getSource(source, type) {
   );
 }
 
-function getUuid(length = 16) {
-  const charSetLen = charSet.length;
-  let outStr = '';
-  for (let i = 0; i < length; i++) {
-    outStr = outStr.concat(
-      charSet.charAt(Math.floor(Math.random(0, 1) * charSetLen)),
-    );
+/**
+ * 生成uuid
+ * @returns {*}
+ */
+function uuid() {
+  function rd(a) {
+    // eslint-disable-next-line
+    return a ? (a ^ Math.random() * 16 >> a / 4).toString(16) :
+      ([1e7] + -[1e3] + -4e3 + -8e3 + -1e11).replace(/[018]/g, rd);
   }
-  return outStr;
+  return rd();
 }
 
+/**
+ * on
+ * @type {Function}
+ */
 const on = (function () {
   return function (element, event, handler) {
     if (element && event && handler) {
@@ -36,6 +40,10 @@ const on = (function () {
   };
 }());
 
+/**
+ * off
+ * @type {Function}
+ */
 const off = (function () {
   return function (element, event, handler) {
     if (element && event) {
@@ -47,6 +55,6 @@ const off = (function () {
 export {
   on,
   off,
+  uuid,
   getSource,
-  getUuid,
 };
