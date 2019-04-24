@@ -1,55 +1,59 @@
 <template>
   <div id="app">
-    <ce-header></ce-header>
+    <ce-header
+      @run="handleRun"
+      @reset="handleReset"
+    ></ce-header>
     <div class="code-editor-content">
       <split-warp v-model="value">
-        <editor-codemirror
+        <ce-codemirror
           slot="left"
-          :options="options"
-          :code="code"
-        ></editor-codemirror>
-        <div class="mount-el" id="mount-el"></div>
+          v-model="code"
+        ></ce-codemirror>
+        <ce-preview
+          ref="preview"
+          slot="right"
+          :code="code"></ce-preview>
       </split-warp>
     </div>
   </div>
 </template>
 
 <script>
+  import { button } from './templates';
   import CeHeader from './components/header';
   import SplitWarp from './components/split-wrapper';
   // import EditorAce from './components/editor-ace';
-  import EditorCodemirror from './components/editor-codemirror';
+  import CeCodemirror from './components/editor-codemirror';
+  import CePreview from './components/preview-warpper';
 
   export default {
     components: {
       CeHeader,
       SplitWarp,
       // EditorAce,
-      EditorCodemirror,
+      CePreview,
+      CeCodemirror,
     },
     data() {
       return {
         value: 0.5,
-        options: {
-          mode: 'htmlmixed',
-          lineNumbers: !0,
-          // scrollbarStyle: "simple",
-          autoCloseBrackets: !0,
-          matchBrackets: !0,
-          showCursorWhenSelecting: !0,
-          autoCloseTags: !0,
-          tabSize: 2,
-          foldGutter: !0,
-          gutters: [
-            'CodeMirror-linenumbers',
-            'CodeMirror-foldgutter',
-            'CodeMirror-lint-markers',
-          ],
-          autofocus: !0,
-          styleActiveLine: !0,
-        },
-        code: '<div></div>',
+        code: button,
       };
+    },
+    methods: {
+      handleRun() {
+        this.$refs.preview.run();
+      },
+      handleReset() {
+        this.code = button;
+        this.$refs.preview.reset();
+      },
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.$refs.preview.run();
+      });
     },
   };
 </script>

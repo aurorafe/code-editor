@@ -1,4 +1,4 @@
-<template>
+const button = `<template>
   <div class="code-editor__header">
     <a href="/" class="code-editor__logo"></a>
     <div class="code-editor__header-menu">
@@ -49,7 +49,7 @@
       z-index: 1000;
       position: fixed;
       top: 0;
-      background-color: #fff;
+      background-color: red;
       box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
       font-size: 14px;
     }
@@ -121,3 +121,8 @@
     }
   }
 </style>
+`;
+
+export {
+  button,
+};

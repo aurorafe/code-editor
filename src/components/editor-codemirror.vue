@@ -1,7 +1,12 @@
 <template>
   <div class="code-editor__codemirror">
     <div ref="codeEditor" v-if="merge"></div>
-    <textarea ref="textArea" :name="name" :placeholder="placeholder" v-else></textarea>
+    <textarea
+      ref="textArea"
+      style="display: none;"
+      :name="name"
+      :placeholder="placeholder"
+      v-else></textarea>
   </div>
 </template>
 
@@ -38,7 +43,24 @@
       },
       options: {
         type: Object,
-        default: () => ({}),
+        default: () => ({
+          mode: 'htmlmixed',
+          lineNumbers: !0,
+          // scrollbarStyle: "simple",
+          autoCloseBrackets: !0,
+          matchBrackets: !0,
+          showCursorWhenSelecting: !0,
+          autoCloseTags: !0,
+          tabSize: 2,
+          foldGutter: !0,
+          gutters: [
+            'CodeMirror-linenumbers',
+            'CodeMirror-foldgutter',
+            'CodeMirror-lint-markers',
+          ],
+          autofocus: !0,
+          styleActiveLine: !0,
+        }),
       },
       events: {
         type: Array,
@@ -83,6 +105,7 @@
           this.editorInstance = this.codemirror;
           this.editorInstance.setValue(this.code || this.value || this.content);
         }
+        console.log(this.editorInstance, this.code);
         this.editorInstance.on('change', cm => {
           this.content = cm.getValue();
           if (this.$emit) {
@@ -133,7 +156,9 @@
     },
     mounted() {
       this.$nextTick(() => {
-        this.initialize();
+        setTimeout(() => {
+          this.initialize();
+        });
       });
     },
     beforeDestroy() {
