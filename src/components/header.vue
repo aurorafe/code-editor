@@ -1,33 +1,48 @@
 <template>
   <div class="code-editor__header">
-    <a href="/" class="code-editor__logo"></a>
+    <a href="/" class="code-editor__logo">
+<!--      <img :src="require('../../images/logo.png')" alt="logo">-->
+    </a>
     <div class="code-editor__header-menu">
       <button type="button" class="header-menu-button" @click="handleAction('run')">
         <span>
-          <i class="code-editor-icon" style="font-size: 18px;"></i>
+          <i class="gis-iconfont gis-iconplay code-editor-icon" style="font-size: 18px;"></i>
           <span>运行</span>
         </span>
       </button>
       <button type="button" class="header-menu-button" @click="handleAction('reset')">
         <span>
-          <i class="code-editor-icon" style="font-size: 18px;"></i>
+          <i class="gis-iconfont gis-iconReset code-editor-icon" style="font-size: 18px;"></i>
           <span>重置</span>
         </span>
       </button>
     </div>
     <div class="code-editor__ask">
-      <button type="button" class="header-menu-button">
+      <el-tooltip placement="top">
+        <div slot="content">
+          1、支持Vue组件实时预览<br/>
+          2、支持es6语法 <br/>
+          3、样式部分仅支持css和less语法 <br/>
+          4、支持快捷键Ctrl+s保存运行
+        </div>
+        <button type="button" class="header-menu-button">
         <span>
-          <i class="ivu-icon ivu-icon-ios-play-outline" style="font-size: 18px;"></i>
+          <i class="gis-iconfont gis-iconhelp code-editor-icon" style="font-size: 18px;">?</i>
           <span></span>
         </span>
-      </button>
+        </button>
+      </el-tooltip>
     </div>
   </div>
 </template>
 <script>
+  import ElTooltip from './tool-tip';
+
   export default {
     name: 'ce-header',
+    components: {
+      ElTooltip,
+    },
     data() {
       return {};
     },
@@ -59,7 +74,7 @@
       height: 50px;
       line-height: 48px;
       img {
-        height: 46px;
+        height: 32px;
         vertical-align: middle;
       }
     }

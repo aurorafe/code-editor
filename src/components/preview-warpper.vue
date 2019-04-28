@@ -4,7 +4,8 @@
 
 <script>
   import Vue from 'vue';
-  import { getSource, uuid } from '../utils';
+  import { uuid } from '@/utils/common';
+  import { getSource } from '../utils';
   import getLessCode from '../processors/less';
 
   export default {
@@ -42,7 +43,6 @@
         this.codeTemplate.id = uuid();
         // eslint-disable-next-line no-new-func
         const parseConfig = new Function(this.codeTemplate.script)();
-        console.log(parseConfig);
         parseConfig.template = this.codeTemplate.template;
         const CodeComponent = Vue.extend(parseConfig);
         // 挂载组件

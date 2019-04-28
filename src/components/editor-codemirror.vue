@@ -14,6 +14,7 @@
   import '../editor/codemirror';
   import 'codemirror/lib/codemirror.css';
   import CodeMirror from 'codemirror';
+  import { on, off } from '@/utils/dom';
 
   export default {
     name: 'editor-codemirror',
@@ -105,7 +106,7 @@
           this.editorInstance = this.codemirror;
           this.editorInstance.setValue(this.code || this.value || this.content);
         }
-        console.log(this.editorInstance, this.code);
+
         this.editorInstance.on('change', cm => {
           this.content = cm.getValue();
           if (this.$emit) {
@@ -127,6 +128,7 @@
         element && element.remove && element.remove();
       },
       handleCodeChange(newVal) {
+        if (!this.editorInstance) return;
         const cmValue = this.editorInstance.getValue();
         if (newVal !== cmValue) {
           const scrollInfo = this.editorInstance.getScrollInfo();
@@ -145,13 +147,44 @@
         }
       },
       switchMerge() {
-        const history = this.editorInstance.doc.history;
-        const cleanGeneration = this.editorInstance.doc.cleanGeneration;
+        const { history } = this.editorInstance.doc;
+        const { cleanGeneration } = this.editorInstance.doc;
         this.options.value = this.editorInstance.getValue();
         this.destroy();
         this.initialize();
         this.editorInstance.doc.history = history;
         this.editorInstance.doc.cleanGeneration = cleanGeneration;
+      },
+      handleSave(e) {
+        // let keyCode = e.keyCode || e.which || e.charCode
+        const ctrlKey = e.ctrlKey || e.metaKey;
+
+        // 73 == i
+        if (e.keyCode === 73 && e.shiftKey) {
+          return;
+        }
+
+        if (e.keyCode < 48 || e.keyCode > 90) {
+          return;
+        }
+
+        const { altKey } = e;
+        let key = '';
+
+        if (ctrlKey) {
+          key = `ctrl+${e.key}`;
+        }
+        if (altKey) {
+          key = `alt+${e.code.toLowerCase().replace('key', '')}`;
+        }
+
+        if (key) {
+          if (['ctrl+s'].includes(key)) {
+            this.editorInstance.save();
+            this.$emit('save');
+            e.preventDefault();
+          }
+        }
       },
     },
     mounted() {
@@ -159,9 +192,11 @@
         setTimeout(() => {
           this.initialize();
         });
+        on(document, 'keydown', this.handleSave);
       });
     },
     beforeDestroy() {
+      off(document, 'keydown', this.handleSave);
       this.destroy();
     },
   };
