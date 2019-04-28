@@ -37,8 +37,10 @@
 </template>
 
 <script>
-  // eslint-disable-next-line import/named
-  import { on, off } from '../utils';
+  import Vue from 'vue';
+  import { on, off } from '@/utils/dom';
+
+  const isServer = Vue.prototype.$isServer;
 
   export default {
     name: 'split-wrapper',
@@ -149,9 +151,11 @@
       this.$nextTick(() => {
         this.computeSlitValue();
       });
+      if (isServer) return;
       on(window, 'resize', this.handleResize);
     },
     beforeDestroy() {
+      if (isServer) return;
       off(window, 'resize', this.handleResize);
     },
   };
