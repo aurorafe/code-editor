@@ -22,7 +22,7 @@ function getSource(source, type) {
       /export default/,
       'const module = ',
     ), {
-      presets: ['es2015', 'stage-0'],
+      presets: ['es2015'],
     }).code;
     code = `${code}
 return _module;`;
