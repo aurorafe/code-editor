@@ -1,3 +1,5 @@
+import * as Babel from '@babel/standalone';
+
 function getSource(source, type) {
   const regex = new RegExp(`<${type}[^>]*>`);
   let openingTag = source.match(regex);

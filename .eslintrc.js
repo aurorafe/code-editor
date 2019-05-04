@@ -62,6 +62,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   },
   globals: {
-    Babel: true,
+    // Babel: true,
   }
 };
