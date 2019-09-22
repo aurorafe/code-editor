@@ -10,7 +10,8 @@
     "dll": "webpack --config build/webpack.dll.conf.js",
     "build:report": "cross-env npm_config_report=true webpack --config build/webpack.prod.conf.js",
     "lint": "eslint --ext .js,.vue src",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@babel/standalone": "^7.4.3",
@@ -60,6 +61,7 @@
     "file-loader": "^1.1.11",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^4.0.0-beta.5",
+    "gh-pages": "^1.2.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "lint-staged": "^7.3.0",

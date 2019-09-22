@@ -68,7 +68,7 @@ const webpackConfig = merge(require('./webpack.base.conf'), {
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
+      template: 'public/index.html',
       version: new Date().toLocaleString('zh', {
         month: 'numeric',
         day: 'numeric',
