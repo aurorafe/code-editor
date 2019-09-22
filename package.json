@@ -2,7 +2,7 @@
   "name": "code-editor",
   "version": "0.0.1",
   "description": "code editor",
-  "author": "dongdong.feng <dongdong.feng@moji.com>",
+  "author": "smilefdd@gmail.com",
   "private": false,
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --config build/webpack.dev.conf.js",
