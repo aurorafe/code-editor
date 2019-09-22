@@ -9,7 +9,9 @@ module.exports = {
   mode: 'production',
   entry: {
     extlib: [
-      'vue'
+      'vue',
+      '@babel/standalone',
+      'codemirror'
     ]
   },
   output: {
