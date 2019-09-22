@@ -1,5 +1,6 @@
 import 'codemirror/lib/codemirror.css';
 // language
+import 'codemirror/mode/htmlmixed/htmlmixed';
 import 'codemirror/mode/vue/vue';
 // theme css
 import 'codemirror/theme/base16-dark.css';

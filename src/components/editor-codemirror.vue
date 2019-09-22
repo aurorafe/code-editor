@@ -47,7 +47,7 @@
         default: () => ({
           mode: 'htmlmixed',
           lineNumbers: !0,
-          // scrollbarStyle: "simple",
+          // scrollbarStyle: 'simple',
           autoCloseBrackets: !0,
           matchBrackets: !0,
           showCursorWhenSelecting: !0,
@@ -137,6 +137,7 @@
           this.editorInstance.scrollTo(scrollInfo.left, scrollInfo.top);
         }
         this.unseenLineMarkers();
+        this.refresh();
       },
       unseenLineMarkers() {
         if (this.unseenLines !== undefined && this.marker !== undefined) {
@@ -188,12 +189,8 @@
       },
     },
     mounted() {
-      this.$nextTick(() => {
-        setTimeout(() => {
-          this.initialize();
-        });
-        on(document, 'keydown', this.handleSave);
-      });
+      this.initialize();
+      on(document, 'keydown', this.handleSave);
     },
     beforeDestroy() {
       off(document, 'keydown', this.handleSave);

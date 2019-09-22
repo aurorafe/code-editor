@@ -15,7 +15,6 @@ function getSource(source, type) {
   );
 
   let code = '';
-
   if (type === 'script') {
     // eslint-disable-next-line prefer-destructuring
     code = Babel.transform(sliceSource.replace(

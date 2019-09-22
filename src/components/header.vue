@@ -27,7 +27,7 @@
         </div>
         <button type="button" class="header-menu-button">
         <span>
-          <i class="gis-iconfont gis-iconhelp code-editor-icon" style="font-size: 18px;">?</i>
+          <i class="gis-iconfont gis-iconhelp code-editor-icon" style="font-size: 18px;"></i>
           <span></span>
         </span>
         </button>
